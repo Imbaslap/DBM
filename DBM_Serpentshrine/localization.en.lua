@@ -40,6 +40,7 @@ DBM_TIDEWALKER_OPTION_2				= "Announce Watery Grave";
 
 DBM_TIDEWALKER_YELL_PULL			= "Flood of the deep, take you!";
 DBM_TIDEWALKER_YELL_MURLOCS			= "Destroy them my subjects!";
+DBM_TIDEWALKER_EMOTE_MURLOCS		= "The violent earthquake has alerted nearby murlocs!";
 DBM_TIDEWALKER_EMOTE_GLOBES			= "Morogrim Tidewalker summons watery globules!";
 DBM_TIDEWALKER_EMOTE_GRAVE			= "Morogrim Tidewalker sends his enemies to their watery graves!";
 DBM_TIDEWALKER_DEBUFF_GRAVE			= "([^%s]+) (%w+) afflicted by Watery Grave.";
@@ -48,8 +49,6 @@ DBM_TIDEWALKER_WARN_MURLOCS			= "*** Murlocs ***";
 DBM_TIDEWALKER_WARN_MURLOCS_SOON	= "*** Murlocs soon ***";
 DBM_TIDEWALKER_WARN_GRAVE			= "*** Watery Grave on %s ***";
 DBM_TIDEWALKER_WARN_GLOBES			= "*** Watery Globules ***";
-DBM_TIDEWALKER_OPTION_GRAVE			= "Announce Watery Grave targets";
-DBM_TIDEWALKER_WARN_WATERYGRAVE		= "*** >%s< is in a Watery Grave! ***";
 
 -- Fathom-Lord Karathress
 DBM_FATHOMLORD_NAME					= "Fathom-Lord Karathress";

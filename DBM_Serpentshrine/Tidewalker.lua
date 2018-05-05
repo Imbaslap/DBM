@@ -1,7 +1,7 @@
 local Tidewalker = DBM:NewBossMod("Tidewalker", DBM_TIDEWALKER_NAME, DBM_TIDEWALKER_DESCRIPTION, DBM_COILFANG, DBM_SERPENT_TAB, 3);
 
-Tidewalker.Version		= "1.1";
-Tidewalker.Author		= "Imbaslap";
+Tidewalker.Version		= "1.0";
+Tidewalker.Author		= "Tandanu";
 Tidewalker.GraveTargets	= {};
 Tidewalker.GraveCounter	= 0;
 Tidewalker.MinVersionToSync  = 2.51;
@@ -13,20 +13,23 @@ Tidewalker:AddOption("Grave", false, DBM_TIDEWALKER_OPTION_2);
 
 Tidewalker:AddBarOption("Murlocs")
 Tidewalker:AddBarOption("Watery Grave")
-Tidewalker:AddOption("WarnGraves", true, DBM_TIDEWALKER_OPTION_GRAVE);
 
 Tidewalker:RegisterEvents(
 	"CHAT_MSG_RAID_BOSS_EMOTE",
+	"SPELL_CAST_START",
+	"CHAT_MSG_MONSTER_YELL",
 	"SPELL_AURA_APPLIED" 
+	
+	
 );
 
 function Tidewalker:OnCombatStart(delay)
 	self.GraveTargets	= {};
 	self.GraveCounter	= 0;
 	
-	self:StartStatusBarTimer(28, "Watery Grave", "Interface\\Icons\\Spell_Shadow_DemonBreath");
-	self:StartStatusBarTimer(45 - delay, "Murlocs", "Interface\\Icons\\INV_Misc_MonsterHead_02");
-	self:ScheduleSelf(35 - delay, "MurlocWarn");
+	self:StartStatusBarTimer(55 - delay, "Murlocs", "Interface\\Icons\\INV_Misc_MonsterHead_02");
+	self:ScheduleSelf(45 - delay, "MurlocWarn");
+	self:StartStatusBarTimer(9, "Tidal Wave", "Interface\\Icons\\Spell_Frost_ChillingBlast");
 end
 
 function Tidewalker:OnCombatEnd()
@@ -35,7 +38,26 @@ function Tidewalker:OnCombatEnd()
 end
 
 function Tidewalker:OnEvent(event, arg1)
-	if event == "GraveCheck" then
+	if event == "SPELL_AURA_APPLIED" then
+		if arg1.spellId == 37850
+		or arg1.spellId == 38023
+		or arg1.spellId == 38024
+		or arg1.spellId == 38025
+		or arg1.spellId == 38049 then -- ???
+			self:SendSync(tostring(arg1.destName))
+		end
+		
+	elseif event == "CHAT_MSG_MONSTER_YELL" and arg1 then
+		if string.find(arg1, DBM_TIDEWALKER_YELL_MURLOC) then
+		self:StartStatusBarTimer(50, "Murlocs", "Interface\\Icons\\INV_Misc_MonsterHead_02");
+		end
+		
+	elseif event == "SPELL_CAST_START" then
+		if arg1.spellId == 37730 then
+			self:StartStatusBarTimer(15, "Tidal Wave", "Interface\\Icons\\Spell_Frost_ChillingBlast");
+		end
+		
+	elseif event == "GraveCheck" then
 		if self.Options.Grave and self.GraveCounter > 0 and self.GraveCounter < 4 then
 			local targetString = "";
 			if self.GraveCounter == 1 then
@@ -50,20 +72,16 @@ function Tidewalker:OnEvent(event, arg1)
 		self.GraveCounter = 0;
 		self.GraveTargets = {};
 		
-	elseif event == "CHAT_MSG_RAID_BOSS_YELL" then
-		if arg1 == DBM_TIDEWALKER_YELL_MURLOCS then
+	elseif event == "CHAT_MSG_RAID_BOSS_EMOTE" then
+		if arg1 == DBM_TIDEWALKER_EMOTE_MURLOCS then
 			if self.Options.Murlocs then
 				self:Announce(DBM_TIDEWALKER_WARN_MURLOCS, 3);
 			end
-			self:StartStatusBarTimer(45, "Murlocs", "Interface\\Icons\\INV_Misc_MonsterHead_02");
+			self:StartStatusBarTimer(50, "Murlocs", "Interface\\Icons\\INV_Misc_MonsterHead_02");
 			self:UnScheduleSelf("MurlocWarn");
-			self:ScheduleSelf(40, "MurlocWarn");
-		elseif string.sub(msg, 0, 5) == "WaterG" then
-			local target = string.sub(msg, 6);
-			if self.Options.WarnGraves then
-				self:Announce(string.format(DBM_TIDEWALKER_WARN_WATERYGRAVE, target), 1);
-				self:StartStatusBarTimer(30, "Next Watery Grave", "Interface\\Icons\\Spell_Shadow_Demonbreath");
-		end
+			self:ScheduleSelf(45, "MurlocWarn");
+		elseif arg1 == DBM_TIDEWALKER_EMOTE_GRAVE then
+			self:StartStatusBarTimer(30, "Watery Grave", "Interface\\Icons\\Spell_Shadow_DemonBreath");
 		elseif arg1 == DBM_TIDEWALKER_EMOTE_GLOBES then
 			self:Announce(DBM_TIDEWALKER_WARN_GLOBES, 3);
 		end
