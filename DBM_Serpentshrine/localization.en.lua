@@ -99,6 +99,9 @@ DBM_LEO_OPTION_DEMONWARN			= "Announce Inner Demons targets";
 DBM_LEO_YELL_PULL					= "Finally, my banishment ends!";
 DBM_LEO_YELL_DEMON					= "Be gone, trifling elf%.%s*I am in control now!"; -- stupid spaces...there are 2 spaces at the moment :[
 DBM_LEO_YELL_SHADOW					= "No... no! What have you done? I am the master! Do you hear me? I am... aaggh! Can't... contain him.";
+DBM_LEO_YELL_SPLIT					= "At last I am liberated. It has been too long since I have tasted true freedom!";
+DBM_LEO_YELL_WHISPER				= "We all have our demons";
+
 DBM_LEO_GAIN_WHIRLWIND				= "Leotheras the Blind gains Whirlwind.";
 DBM_LEO_FADE_WHIRLWIND				= "Whirlwind fades from Leotheras the Blind.";
 DBM_LEO_DEBUFF_WHISPER				= "([^%s]+) (%w+) afflicted by Insidious Whisper.";

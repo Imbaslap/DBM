@@ -64,6 +64,10 @@ function Leotheras:OnEvent(event, arg1)
 --			self:StartStatusBarTimer(15, "Inner Demons in", "Interface\\Icons\\Spell_Shadow_ManaFeed"); -- seems to be on a random timer (but changed to a fixed timer in 2.1.0?)
 --			self:ScheduleSelf(10, "DemonsSoon");
 
+		elseif arg1 == DBM_LEO_YELL_SPLIT then			
+			self:StartStatusBarTimer(10, "Next Whirlwind", "Interface\\Icons\\Ability_Whirlwind");
+			self:ScheduleSelf(7, "WhirlWarn2");
+
 		elseif arg1 == DBM_LEO_YELL_SHADOW then
 			self.Phase = "normal";
 			self:Announce(DBM_LEO_WARN_SHADOW, 3);
@@ -73,7 +77,7 @@ function Leotheras:OnEvent(event, arg1)
 			self:EndStatusBarTimer("Demon Form");
 			
 			self:StartStatusBarTimer(19, "Next Whirlwind", "Interface\\Icons\\Ability_Whirlwind");
-			self:ScheduleSelf(18, "WhirlWarn2");
+			self:ScheduleSelf(15, "WhirlWarn2");
 			
 		elseif string.find(arg1, DBM_LEO_YELL_WHISPER) then
 			if (GetTime() - self.DemonSpam) > 5 then
@@ -96,7 +100,7 @@ function Leotheras:OnEvent(event, arg1)
 		self:StartStatusBarTimer(45, "Demon Form", "Interface\\Icons\\Spell_Shadow_Metamorphosis");
 		
 		self:StartStatusBarTimer(19, "Next Whirlwind", "Interface\\Icons\\Ability_Whirlwind");
-		
+				self:ScheduleSelf(14, "WhirlWarn2");
 		self:ScheduleSelf(14, "WhirlWarn2");
 		
 	elseif event == "PhaseWarn" then
