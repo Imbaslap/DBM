@@ -39,7 +39,7 @@ function Fathomlord:OnEvent(event, arg1)
 		
 	elseif event == "SPELL_AURA_APPLIED" then
 		if arg1.spellId == 38452 then
-			self:StartStatusBarTimer(27, "Spitfire Totem", "Interface\\Icons\\Spell_Fire_Searingtotem");
+			self:StartStatusBarTimer(20, "Spitfire Totem", "Interface\\Icons\\Spell_Fire_Searingtotem");
 			self:SendSync("Spitfireattack");
 		end
 		
@@ -57,11 +57,11 @@ function Fathomlord:OnSync(msg)
 		end
 		
 	elseif msg == "Spitfireattack" then
-		self:ScheduleMethod(27, "SendSync", "Spitfireattackcont");
+		self:ScheduleMethod(20, "SendSync", "Spitfireattackcont");
 
 	elseif msg == "Spitfireattackcont" then
-		self:StartStatusBarTimer(27, "Spitfire Totem", "Interface\\Icons\\Spell_Fire_Searingtotem");	
-		self:ScheduleMethod(27, "SendSync", "Spitfireattackcont");		
+		self:StartStatusBarTimer(20, "Spitfire Totem", "Interface\\Icons\\Spell_Fire_Searingtotem");	
+		self:ScheduleMethod(20, "SendSync", "Spitfireattackcont");		
 				
 	elseif msg == "KaraTotem" then
 		if self.Options.KaraTotem then
