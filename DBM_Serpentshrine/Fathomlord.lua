@@ -1,12 +1,14 @@
 local Fathomlord = DBM:NewBossMod("Fathomlord", DBM_FATHOMLORD_NAME, DBM_FATHOMLORD_DESCRIPTION, DBM_COILFANG, DBM_SERPENT_TAB, 4);
 
-Fathomlord.Version		= "1.1";
-Fathomlord.Author		= "Imbaslap";
+Fathomlord.Version		= "1.0";
+Fathomlord.Author		= "Tandanu";
 
 Fathomlord:RegisterCombat("YELL", DBM_FATHOMLORD_YELL_PULL);
 
 Fathomlord:RegisterEvents(
 	"SPELL_CAST_START",
+	"SPELL_DAMAGE",
+	"SPELL_AURA_APPLIED",
 	"SPELL_CAST_SUCCESS"
 );
 
@@ -22,12 +24,25 @@ function Fathomlord:OnCombatStart(delay)
 end
 
 function Fathomlord:OnEvent(event, arg1)
+
 	if event == "SPELL_CAST_SUCCESS" then
 		if arg1.spellId == 38236 and arg1.sourceName == DBM_FATHOMLORD_NAME then
 			self:SendSync("KaraTotem")
 		elseif arg1.spellId == 38236 then
 			self:SendSync("TidalTotem")
 		end
+		
+	elseif event == "SPELL_DAMAGE" then
+		if arg1.spellId == 38358 then
+			self:StartStatusBarTimer(22, "Tidal Wave", "Interface\\Icons\\Spell_Frost_Summonwaterelemental");
+		end
+		
+	elseif event == "SPELL_AURA_APPLIED" then
+		if arg1.spellId == 38452 then
+			self:StartStatusBarTimer(27, "Spitfire Totem", "Interface\\Icons\\Spell_Fire_Searingtotem");
+			self:SendSync("Spitfireattack");
+		end
+		
 	elseif event == "SPELL_CAST_START" then
 		if arg1.spellId == 38330 then
 			self:SendSync("Heal");
@@ -39,18 +54,24 @@ function Fathomlord:OnSync(msg)
 	if msg == "TidalTotem" then
 		if self.Options.TidalTotem then
 			self:Announce(DBM_FATHOMLORD_SFTOTEM1_WARN);
-			self:StartStatusBarTimer(20, "Tidalvess Spitfire", "Interface\\Icons\\Spell_FireResistanceTotem_01");
-		end	
+		end
+		
+	elseif msg == "Spitfireattack" then
+		self:ScheduleMethod(27, "SendSync", "Spitfireattackcont");
+
+	elseif msg == "Spitfireattackcont" then
+		self:StartStatusBarTimer(27, "Spitfire Totem", "Interface\\Icons\\Spell_Fire_Searingtotem");	
+		self:ScheduleMethod(27, "SendSync", "Spitfireattackcont");		
+				
 	elseif msg == "KaraTotem" then
 		if self.Options.KaraTotem then
-			self:EndStatusBarTimer("Tidalvess Spitfire");
 			self:Announce(DBM_FATHOMLORD_SFTOTEM2_WARN);
-			self:StartStatusBarTimer(25, "Karathress Spitfire", "Interface\\Icons\\Spell_FireResistanceTotem_01");
-		end	
+		end
 	elseif msg == "Heal" then
 		if self.Options.Heal then
 			self:Announce(DBM_FATHOMLORD_HEAL_WARN);
-			self:StartStatusBarTimer(1, "Healing Wave", "Interface\\Icons\\Spell_Nature_MagicImmunity");
-		end	
+		end
+		self:StartStatusBarTimer(1, "Healing Wave", "Interface\\Icons\\Spell_Nature_MagicImmunity");
+				self:StartStatusBarTimer(15, "Nest Healing Wave", "Interface\\Icons\\Spell_Nature_MagicImmunity");
 	end
 end
