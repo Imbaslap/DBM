@@ -55,6 +55,7 @@ function Fathomlord:OnSync(msg)
 		if self.Options.TidalTotem then
 			self:Announce(DBM_FATHOMLORD_SFTOTEM1_WARN);
 		end
+		self:StartStatusBarTimer(20, "Spitfire Totem", "Interface\\Icons\\Spell_Fire_Searingtotem");
 		
 	elseif msg == "Spitfireattack" then
 		self:ScheduleMethod(20, "SendSync", "Spitfireattackcont");
