@@ -48,7 +48,7 @@ function Tidewalker:OnEvent(event, arg1)
 		end
 		
 	elseif event == "CHAT_MSG_MONSTER_YELL" and arg1 then
-		if string.find(arg1, DBM_TIDEWALKER_YELL_MURLOC) then
+		if string.find(arg1, DBM_TIDEWALKER_YELL_MURLOCS) then
 			self:StartStatusBarTimer(50, "Murlocs", "Interface\\Icons\\INV_Misc_MonsterHead_02");
 		end
 		

@@ -124,12 +124,12 @@ function Solarian:OnSync(msg)
 		if self.Options.WarnPhase then
 			self:Announce(DBM_SOLARIAN_ANNOUNCE_SPLIT, 3);
 			self:ScheduleSelf(6, "AgentsNow");
-			self:ScheduleSelf(17, "PriestsWarn");
-			self:ScheduleSelf(22, "PriestsNow");
+			self:ScheduleSelf(12, "PriestsWarn");
+			self:ScheduleSelf(17, "PriestsNow");
 			self:ScheduleSelf(85, "SplitWarn");
 		end		
 		self:StartStatusBarTimer(90, "Split", "Interface\\Icons\\Spell_Holy_SummonLightwell");
-		self:StartStatusBarTimer(22.5, "Priests & Solarian", "Interface\\Icons\\Spell_Holy_Renew");
+		self:StartStatusBarTimer(17, "Priests & Solarian", "Interface\\Icons\\Spell_Holy_Renew");
 		self:StartStatusBarTimer(6.5, "Agents", "Interface\\Icons\\Spell_Holy_AuraMastery");
 		self:ScheduleEvent(50, "ResetSplit")
 	end

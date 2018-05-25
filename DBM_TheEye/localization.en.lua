@@ -84,7 +84,7 @@ DBM_KAEL_OPTION_WARNMC					= "Announce mind control";
 DBM_KAEL_OPTION_ICONMC					= "Set icons on mind control targets";
 DBM_KAEL_OPTION_GRAVITY					= "Announce gravity lapse";
 
-DBM_KAEL_YELL_PHASE1					= "Energy. Power. My people are addicted to it... a dependence made manifest after the Sunwell was destroyed. Welcome... to the future. A pity you're too late to stop it. No one can stop me now! Selama ashel'anore.";
+DBM_KAEL_YELL_PHASE1					= "Energy. Power. My people are addicted to it... a dependence made manifest after the Sunwell was destroyed. Welcome... to the future. A pity you are too late to stop it. No one can stop me now! Selama ashel'anore!";
 DBM_KAEL_EMOTE_THALADRED_TARGET			= "sets eyes on ([^%s]+).";
 DBM_KAEL_YELL_PHASE1_SANGUINAR			= "You have persevered against some of my best advisors. But none can withstand the might of the Bloodhammer. Behold, Lord Sanguinar.";
 DBM_KAEL_YELL_PHASE1_CAPERNIAN			= "Capernian will see to it that your stay here is a short one.";

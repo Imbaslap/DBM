@@ -34,6 +34,7 @@ function Doomwalker:OnCombatStart(delay)
 	if self.Options.RangeCheck then
 		DBM_Gui_DistanceFrame_Show();
 	end
+	self:StartStatusBarTimer(47, "First Earthquake", "Interface\\Icons\\Spell_Nature_Earthquake");
 end
 
 function Doomwalker:OnCombatEnd()
@@ -50,9 +51,9 @@ function Doomwalker:OnEvent(event, arg1)
 			if self.Options.QuakeWarn then
 				self:Announce(DBM_DOOMW_QUAKE_WARN, 3);
 			end
-			self:StartStatusBarTimer(52, "Earthquake Cooldown", "Interface\\Icons\\Spell_Nature_Earthquake");
+			self:StartStatusBarTimer(50, "Earthquake Cooldown", "Interface\\Icons\\Spell_Nature_Earthquake");
 			self:StartStatusBarTimer(8, "Earthquake", "Interface\\Icons\\Spell_Nature_Earthquake");
-			self:ScheduleSelf(52, "QuakeWarn");
+			self:ScheduleSelf(50, "QuakeWarn");
 		end
 		
 	elseif event == "QuakeWarn" and self.Options.QuakeWarn then
@@ -65,7 +66,7 @@ function Doomwalker:OnEvent(event, arg1)
 				self:Announce(DBM_DOOMW_CHARGE, 2);
 			end
 			
-			self:StartStatusBarTimer(42, "Overrun Cooldown", "Interface\\Icons\\Ability_Warrior_Charge");
+			self:StartStatusBarTimer(40, "Overrun Cooldown", "Interface\\Icons\\Ability_Warrior_Charge");
 			self:ScheduleSelf(41, "ChargeWarn");
 		end
 		
