@@ -11,6 +11,7 @@ local langError	= false;
 local lastMeteor= 0;
 
 Alar:RegisterEvents(
+	"SPELL_DAMAGE",
 	"SPELL_AURA_APPLIED"
 );
 
@@ -44,6 +45,9 @@ function Alar:OnEvent(event, arg1)
 		if not warnPhase then
 			langError = true;
 		end
+		
+	elseif event == "SPELL_DAMAGE" and arg1.spellId == 35181 then
+		self:SendSync("Divebomb");
 		
 	elseif event == "SPELL_AURA_APPLIED" then
 		if arg1.spellId == 35383 and arg1.destName == UnitName("player") then
@@ -80,6 +84,9 @@ function Alar:OnSync(msg)
 		self:ScheduleSelf(570, "EnrageWarn", 30);
 		self:ScheduleSelf(590, "EnrageWarn", 10);
 		
+	elseif msg == "Divebomb" then
+		self:StartStatusBarTimer(47, "Meteorite", "Interface\\Icons\\Spell_Fire_Fireball02");
+	
 	elseif string.sub(msg, 0, 9) == "MeltArmor" then
 		local target = string.sub(msg, 10);
 		if target then

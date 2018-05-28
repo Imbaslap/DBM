@@ -66,13 +66,15 @@ function Solarian:OnEvent(event, arg1)
 			self:SendSync("Split");
 		end
 	elseif event == "CHAT_MSG_MONSTER_YELL" and arg1 then
-		if string.find(arg1, DBM_SOLARIAN_YELL_ENRAGE) then
-			self:Announce(DBM_SOLARIAN_ANNOUNCE_ENRAGE_PHASE, 3);
-			warnPhase = false;
-			self:EndStatusBarTimer("Split");
-			self:UnScheduleSelf("SplitWarn");
-			self:UnScheduleSelf("CheckBack");
+		if string.find(arg1, DBM_SOLARIAN_SAY_SPLIT) then
+		self:StartStatusBarTimer(65, "Split", "Interface\\Icons\\Spell_Holy_SummonLightwell");
+		self:StartStatusBarTimer(15, "Priests & Solarian", "Interface\\Icons\\Spell_Holy_Renew");
 		end
+		if string.find(arg1, DBM_SOLARIAN_SAY_SPLIT2) then
+		self:StartStatusBarTimer(65, "Split", "Interface\\Icons\\Spell_Holy_SummonLightwell");
+		self:StartStatusBarTimer(15, "Priests & Solarian", "Interface\\Icons\\Spell_Holy_Renew");
+		end
+		
 	elseif event == "SplitWarn" then
 		self:Announce(DBM_SOLARIAN_ANNOUNCE_SPLIT_SOON, 2);
 	elseif event == "PriestsWarn" then

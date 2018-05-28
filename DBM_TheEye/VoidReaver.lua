@@ -32,7 +32,7 @@ function VoidReaver:OnCombatStart(delay)
 	self:ScheduleSelf(570 - delay, "EnrageWarn", 30);
 	self:ScheduleSelf(590 - delay, "EnrageWarn", 10);
 	
-	self:StartStatusBarTimer(13 - delay, "Next Pounding", "Interface\\Icons\\Ability_ThunderClap");
+	self:StartStatusBarTimer(11 - delay, "Next Pounding", "Interface\\Icons\\Ability_ThunderClap");
 	self:ScheduleSelf(8 - delay, "PoundingWarn");
 end
 
@@ -91,9 +91,9 @@ end
 
 function VoidReaver:OnSync(msg)
 	if msg == "Pounding" then
-		self:StartStatusBarTimer(14, "Next Pounding", "Interface\\Icons\\Ability_ThunderClap");
+		self:StartStatusBarTimer(10, "Next Pounding", "Interface\\Icons\\Ability_ThunderClap");
 		self:StartStatusBarTimer(3, "Pounding", "Interface\\Icons\\Ability_ThunderClap");
-		self:ScheduleSelf(9, "PoundingWarn");
+		self:ScheduleSelf(7, "PoundingWarn");
 		if self.Options.WarnPounding then
 			self:Announce(DBM_VOIDREAVER_WARN_POUNDING, 3);
 		end

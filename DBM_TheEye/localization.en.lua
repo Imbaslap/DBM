@@ -33,7 +33,11 @@ DBM_SOLARIAN_OPTION_WARN_PHASE			= "Announce adds";
 DBM_SOLARIAN_OPTION_WHISPER_WRATH		= "Send whisper to Wrath targets"
 DBM_SOLARIAN_OPTION_SOUND				= "Play sound when you are afflicted by Wrath"
 
+DBM_SOLARIAN_DEBUFF_WRATH				= "([^%s]+) (%w+) afflicted by Wrath of the Astromancer%."
+DBM_SOLARIAN_SAY_SPLIT					= "I will crush your delusions of grandeur!";
+DBM_SOLARIAN_SAY_SPLIT2					= "Ha ha ha! You are hopelessly outmatched!";
 DBM_SOLARIAN_YELL_ENRAGE				= "Enough of this!%s*Now I call upon the fury of the cosmos itself."
+DBM_SOLARIAN_SAY_PULL					= "Tal anu'men no Sin'dorei!"
 
 DBM_SOLARIAN_SPECWARN_WRATH				= "Wrath on you!";
 DBM_SOLARIAN_ANNOUNCE_WRATH				= "*** Wrath on >%s< ***";
@@ -50,6 +54,9 @@ DBM_ALAR_DESCRIPTION					= "Shows timers and warnings for Al'ar.";
 DBM_ALAR_OPTION_MELTARMOR				= "Announce Melt Armor";
 DBM_ALAR_OPTION_METEOR					= "Announce Meteor";
 
+DBM_ALAR_CAST_REBIRTH					= "Al'ar begins to cast Rebirth.";
+DBM_ALAR_DEBUFF_MELTARMOR				= "([^%s]+) (%w+) afflicted by Melt Armor%.";
+DBM_ALAR_DEBUFF_FIRE_YOU				= "You are afflicted by Flame Patch.";
 DBM_ALAR_FLAME_BUFFET					= "Flame Buffet";
 
 DBM_ALAR_WARN_MELTARMOR					= "*** Melt Armor on >%s< ***";
@@ -86,7 +93,7 @@ DBM_KAEL_OPTION_GRAVITY					= "Announce gravity lapse";
 
 DBM_KAEL_YELL_PHASE1					= "Energy. Power. My people are addicted to it... a dependence made manifest after the Sunwell was destroyed. Welcome... to the future. A pity you are too late to stop it. No one can stop me now! Selama ashel'anore!";
 DBM_KAEL_EMOTE_THALADRED_TARGET			= "sets eyes on ([^%s]+).";
-DBM_KAEL_YELL_PHASE1_SANGUINAR			= "You have persevered against some of my best advisors. But none can withstand the might of the Bloodhammer. Behold, Lord Sanguinar.";
+DBM_KAEL_YELL_PHASE1_SANGUINAR			= "You have persevered against some of my best advisors... but none can withstand the might of the Blood Hammer. Behold, Lord Sanguinar!";
 DBM_KAEL_YELL_PHASE1_CAPERNIAN			= "Capernian will see to it that your stay here is a short one.";
 DBM_KAEL_YELL_PHASE1_TELONICUS			= "Well done. You have proven worthy to test your skills against my Master Engineer, Telonicus.";
 DBM_KAEL_YELL_THALA_DOWN				= "Forgive me, my prince! I have... failed.";
